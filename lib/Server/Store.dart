@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import '../Model/Producer.dart';
 import '../ToolsApp/StyleApp.dart';
 import 'package:ecommerceapp/Model/Producer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 
 class Store {
@@ -33,6 +34,10 @@ class Store {
   // Editeing Producte from FireBase===========================
   editeProducte(data,documentID){
     _firestore.collection(KeyProdectcollection).document(documentID).updateData(data);
+  }
+
+  currentUser(){
+    FirebaseAuth.instance.currentUser();
   }
 
 

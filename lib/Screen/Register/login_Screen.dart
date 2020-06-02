@@ -8,7 +8,10 @@ import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerceapp/provider/ModelHud.dart';
 import 'package:ecommerceapp/provider/adminModel.dart';
-import './funcation_Register.dart';
+import 'package:ecommerceapp/FuncationApp/funcation_Register.dart';
+import 'package:ecommerceapp/Screen/User/HomePage.dart';
+import 'package:ecommerceapp/Screen/Admin/Admin_Home.dart';
+
 
 
 
@@ -25,6 +28,27 @@ class _LoginScreenState extends State<LoginScreen> {
   String _password;
   final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   bool showpassword = true;
+
+  final auth = Auth();
+  final passwordAdmin = 'admin123';
+  final emaildAdmin = 'admin@gmail.com';
+
+
+
+
+  // Funcation Admin ==============================================
+  funcation_Admin(BuildContext context){
+    Provider.of<adminModel>(context,listen: false).changeIsAdmin(true);
+  }
+
+  // Funcation User ==============================================
+  funcation_USer(BuildContext context){
+    Provider.of<adminModel>(context,listen: false).changeIsAdmin(false);
+  }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -93,10 +117,11 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: height * 0.08),
               Builder(
                 builder: (context) => my_Button ( colorButton: anBlack, heightButton: 60, horizontal: 50,
-                    textButton: "Loging", fontSize: 20, radiusButton: 50, onBtnclicked:(){funcation_Login(context);}),
+                    textButton: "Loging", fontSize: 20, radiusButton: 50,
+                    onBtnclicked:(){
+                  funcation_Login(context, _email, _password, _globalKey);
+                }),
               ),
-
-
 
               SizedBox(height: height * 0.02),
               new Row(

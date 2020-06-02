@@ -6,35 +6,44 @@
   import 'package:ecommerceapp/Screen/Admin/Admin_Home.dart';
   import 'package:ecommerceapp/Server/auth.dart';
 
-  final GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
-  String email,password ,fullName;
   final auth = Auth();
   final passwordAdmin = 'admin123';
   final emaildAdmin = 'admin@gmail.com';
   bool showpassword = true;
-
   BuildContext context;
 
 
+  //تسجيل حساب جديد
+  // Funcation SigUp ==============================================
+  Future funcation_signUP(BuildContext context,String email , password,_globalKeyP)async{
+    //ModalProgress
+    final modelHud = Provider.of<ModelHud>(context,listen: false);
+    modelHud.changIsLoding(true);
 
-  // Funcation Admin ==============================================
-  funcation_Admin(BuildContext context){
-    Provider.of<adminModel>(context,listen: false).changeIsAdmin(true);
+    //في حالة التاكد من جميع البيانات مدخلة اعمل حفظ للقيم
+    if( _globalKeyP.currentState.validate()){
+      _globalKeyP.currentState.save();
+
+      // اذا حدث خطأ في هذا الكود نفذ showSnackBar
+      try {
+        final autResulte = await auth.signUp(email, password);
+        modelHud.changIsLoding(false);
+        Navigator.pushNamed(context, HomePage.id);
+      }catch(e){
+        modelHud.changIsLoding(false);
+        Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.message),));
+      }
+    }
+    modelHud.changIsLoding(false);
   }
-
-  // Funcation User ==============================================
-  funcation_USer(BuildContext context){
-    Provider.of<adminModel>(context,listen: false).changeIsAdmin(false);
-  }
-
 
   // Funcation Login ==============================================
-  Future funcation_Login(context)async{
+  Future funcation_Login(BuildContext context,String email , password,globalKeyP)async{
 
     final modelhud = Provider.of<ModelHud>(context,listen: false);
     modelhud.changIsLoding(true);
-    if(_globalKey.currentState.validate()){
-      _globalKey.currentState.save();
+    if(globalKeyP.currentState.validate()){
+      globalKeyP.currentState.save();
 
       //=============================================================================
       //  اذا كانت قيمة isAdmin تساوي True سوف يذهب الي صفحة الادمن
@@ -43,7 +52,7 @@
         //اذا كانت كلمة المرور صحيحة سوف يذهب الي صفحة الادمن
         if(password == passwordAdmin){
           try {
-            final autResulte = await auth.login(email.trim(), password.trim());
+            final autResulte = await auth.login(email.trim().toLowerCase(), password.trim());
             Navigator.pushNamed(context, Admin_Home.id);;
           }catch(e){
             modelhud.changIsLoding(true);
@@ -74,28 +83,4 @@
       }
     }
     modelhud.changIsLoding(false);
-  }
-
-
-  // Funcation SigUp ==============================================
-  Future funcation_signUP(context)async{
-    //ModalProgress
-    final modelHud = Provider.of<ModelHud>(context,listen: false);
-    modelHud.changIsLoding(true);
-
-    //في حالة التاكد من جميع البيانات مدخلة اعمل حفظ للقيم
-    if( _globalKey.currentState.validate()){
-      _globalKey.currentState.save();
-
-      // اذا حدث خطأ في هذا الكود نفذ showSnackBar
-      try {
-        final autResulte = await auth.signUp(email, password);
-        modelHud.changIsLoding(false);
-        Navigator.pushNamed(context, HomePage.id);
-      }catch(e){
-        modelHud.changIsLoding(false);
-        Scaffold.of(context).showSnackBar(SnackBar(content: Text(e.message),));
-      }
-    }
-    modelHud.changIsLoding(false);
   }

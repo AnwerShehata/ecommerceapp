@@ -12,6 +12,7 @@ const String KeyProdectPrice = "PriceProdects";
 const String KeyProdectDescription = "DescriptionProdects";
 const String KeyProdectCategory = "CategoryProdects";
 const String KeyProdectLocation = "LocationProdects";
+const String KeyProdectQuantity = "QuantityProdects";
 
 
 const String KeyJacket  = "Jacket";

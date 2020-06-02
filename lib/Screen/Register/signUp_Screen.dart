@@ -7,7 +7,11 @@ import 'package:ecommerceapp/Server/auth.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:provider/provider.dart';
 import 'package:ecommerceapp/provider/ModelHud.dart';
-import './funcation_Register.dart';
+import 'package:ecommerceapp/FuncationApp/funcation_Register.dart';
+import 'package:ecommerceapp/Screen/User/HomePage.dart';
+import 'package:ecommerceapp/Screen/Admin/Admin_Home.dart';
+
+
 
   class signUp_Screen extends StatelessWidget {
 
@@ -16,6 +20,8 @@ import './funcation_Register.dart';
     GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
     GlobalKey<FormState> scaffoldKey = GlobalKey<FormState>();
     final _auth = Auth();
+
+
 
 
     @override
@@ -82,7 +88,7 @@ import './funcation_Register.dart';
                 builder:(context)=> my_Button(
                   colorButton: anBlack, heightButton: 60, horizontal: 50,
                   textButton: "sign Up", fontSize: 20, radiusButton: 50,
-                  onBtnclicked:(){funcation_signUP(context);}
+                  onBtnclicked:(){funcation_signUP(context,_email ,_password,_globalKey);}
                   ),
                 ),
 

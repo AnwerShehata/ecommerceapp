@@ -11,6 +11,8 @@ import 'package:ecommerceapp/ToolsApp/StyleApp.dart';
 import 'package:ecommerceapp/Screen/Admin/Edite_Products.dart';
 import 'package:ecommerceapp/ToolsApp/WidgetApp.dart';
 import 'package:ecommerceapp/Screen/Admin/Add_Products.dart';
+import 'package:ecommerceapp/Screen/User/HomePage.dart';
+
 
 
 
@@ -96,16 +98,7 @@ class _Manage_ProductState extends State<Manage_Product> {
         elevation: 0,
         title: Text(" Manage_Product "),
         actions: <Widget>[
-          IconButton(icon:Icon(Icons.menu), onPressed: (){
-            showMenu(
-                context: context,
-                position: RelativeRect.fromLTRB(0, 0, 0, 0),
-                items: [
-                  PopupMenuItem(child: Text("View 1")),
-                  PopupMenuItem(child: Text("View 2")),
-                ]
-            );
-          })
+          IconButton(icon: Icon(Icons.home), onPressed: (){ Navigator.pushNamed(context, HomePage.id); })
         ],
       ),
 

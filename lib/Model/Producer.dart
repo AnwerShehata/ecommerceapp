@@ -6,6 +6,7 @@ class Product {
   String proCategory;
   String proLocation;
   String proID;
+  String proQuantity;
 
   Product({
       this.proID,
@@ -13,7 +14,8 @@ class Product {
       this.proPrice,
       this.proDescription,
       this.proCategory,
-      this.proLocation
+      this.proLocation,
+      this.proQuantity,
       });
 
 }

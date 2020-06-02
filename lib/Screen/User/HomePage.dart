@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerceapp/Model/Producer.dart';
+import 'package:ecommerceapp/Screen/User/Cart_Page.dart';
 import 'package:ecommerceapp/Server/Store.dart';
 import 'package:flutter/material.dart';
 import 'package:ecommerceapp/ToolsApp/StyleApp.dart';
 import 'package:ecommerceapp/Components/stackItemsOne.dart';
+import '../Register/login_Screen.dart';
 
 class HomePage extends StatefulWidget {
   static String id = 'HomePage';
@@ -17,6 +19,7 @@ class _HomePageState extends State<HomePage> {
   int value = 0;
   final _store = Store();
   List<Product> _productsHome;
+
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +110,8 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   new Text("discover".toUpperCase(),style: TextStyle(fontSize: 30 , fontWeight: FontWeight.bold)),
-                  new IconButton(icon: Icon(Icons.shopping_cart), onPressed: (){})
+                  new IconButton(icon: Icon(Icons.shopping_cart), 
+                      onPressed: (){ Navigator.pushNamed(context, Cart_Page.id); })
                 ],
               ),
             ),
@@ -138,6 +142,7 @@ class _HomePageState extends State<HomePage> {
                 proDescription: data[KeyProdectDescription],
                 proCategory: data[KeyProdectCategory],
                 proLocation: data[KeyProdectLocation],
+                proQuantity: data[KeyProdectQuantity]
               ));
             }
 
