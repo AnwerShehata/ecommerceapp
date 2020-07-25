@@ -36,11 +36,11 @@ class _MyAppState extends State<MyApp>  {
         ChangeNotifierProvider<ModelHud>(create: (context) => ModelHud()),
         ChangeNotifierProvider<CartItem>(create: (context) => CartItem()),
       ],
+
+
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-
-
-        initialRoute: LoginScreen.id,
+        initialRoute: HomePage.id,
         routes: {
           LoginScreen.id : (context) => LoginScreen(),
           signUp_Screen.id : (context) => signUp_Screen(),
@@ -52,9 +52,8 @@ class _MyAppState extends State<MyApp>  {
           product_detalis.id:(context)=>product_detalis(),
           Cart_Page.id : (context) =>Cart_Page(),
         },
-
-
       ),
+
     );
 
   }

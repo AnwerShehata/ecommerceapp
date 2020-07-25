@@ -19,9 +19,11 @@
     var productsInCart = cartItem.productes;
     // هنا نقول اذا كانت هذا المنتج موجود في صفحة السلة غير قيمة exist= True
     for(var productCart in productsInCart){
-      if(productCart == product){
+
+      if(productCart.proName == product.proName){
         exist = true;
       }
+
     }
 
     if(exist){

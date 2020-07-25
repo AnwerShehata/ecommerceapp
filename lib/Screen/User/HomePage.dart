@@ -32,6 +32,7 @@ class _HomePageState extends State<HomePage> {
           child: Scaffold(
             //==AppBar=======================
             appBar: AppBar(
+              title: Text("data", style:TextStyle(fontSize: 20),),
               backgroundColor: anWhite2,
               elevation: 0,
               bottom: TabBar(
@@ -110,8 +111,8 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   new Text("discover".toUpperCase(),style: TextStyle(fontSize: 30 , fontWeight: FontWeight.bold)),
-                  new IconButton(icon: Icon(Icons.shopping_cart), 
-                      onPressed: (){ Navigator.pushNamed(context, Cart_Page.id); })
+                  new IconButton(icon: Icon(Icons.shopping_cart),
+                      onPressed: (){ Navigator.pushNamed(context, Cart_Page.id); }),
                 ],
               ),
             ),

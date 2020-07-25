@@ -5,7 +5,7 @@ import 'package:ecommerceapp/Model/Producer.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 
-class Store {
+  class Store {
 
   final Firestore _firestore = Firestore.instance;
 
@@ -40,6 +40,20 @@ class Store {
     FirebaseAuth.instance.currentUser();
   }
 
+
+  StoreOrder(data ,List<Product> products){
+    var documentRef = _firestore.collection("Order").document();
+    documentRef.setData(data);
+
+    for(var product in products){
+      documentRef.collection('orderDetails').document().setData({
+        KeyProdectName : product.proName ,
+        KeyProdectPrice : product.proPrice,
+        KeyProdectQuantity : product.proQuantity,
+        KeyProdectLocation : product.proLocation,
+      });
+    }
+  }
 
 
 
